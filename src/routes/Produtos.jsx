@@ -7,9 +7,20 @@ import estilos from "./Produtos.module.css";
 export default function Produtos() {
   document.title = "Lista de Produtos";
 
-  //Criando o bloco de reequisição dos dados utilizando o fetch com promises:
+  const [listaProdutosLocal, setListaProdutosLocal] = useState([{}]);
 
-  
+  //Criando o bloco de reequisição dos dados utilizando o fetch com promises:
+  fetch("http://localhost:5000/produtos",
+  {
+    method: "GET",
+    headers:{
+      'Content-Type': 'application/json',
+    }
+  }).then((response)=> response.json())
+  .then((data)=>{
+    setListaProdutosLocal(data);
+  }).catch(err => console.log(err));
+
 
 
 
